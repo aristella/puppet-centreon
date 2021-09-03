@@ -32,7 +32,7 @@ class centreon::server(
   $poller_name        =  'central',
 ) {
 
-  include centreon::packages
+  #  include centreon::packages
 
   Centreon_host <<||>> {
     clapi_binaries => $clapi_binaries,

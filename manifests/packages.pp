@@ -26,12 +26,15 @@
 
 class centreon::packages {
   $centreonPackages = [
-              'nagios-plugins',
-              'nagios-plugins-standard',
-              'nagios-plugins-basic'
+              'monitoring-plugins',
+              'monitoring-plugins-standard',
+              'monitoring-plugins-basic'
               ]
 
-  package { $centreonPackages:
-    ensure => installed,
-  }
+    # Commented out from Stella.
+    # Lets install nagios checks from nrpe module
+    #
+              #  package { $centreonPackages:
+              #ensure => installed,
+              #}
 }
