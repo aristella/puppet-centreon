@@ -22,23 +22,22 @@
 #
 # Apache V2 License
 #
-
-class centreon::client {
+class centreon::client($template='generic-host', $centreoname=$::hostname) {
   include centreon::packages
 
   # Host declaration
-  @@centreon_host { $::hostname:
+  @@centreon_host { $centreoname:
     ensure   => present,
-    alias    => $::hostname,
+    alias    => $centreoname,
     address  => $::ipaddress,
-    template => 'generic-host',
+    template => $template,
   }
 
   # Ping service declaration
-  @@centreon_service { "check_ping_${::hostname}":
-    ensure      => present,
-    hostname    => $::hostname,
-    template    => 'Ping-LAN',
-    description => 'ping',
-  }
+  #@@centreon_service { "check_ping_${::hostname}":
+  #  ensure      => present,
+  #  hostname    => $::hostname,
+  #  template    => 'Ping-LAN',
+  #  description => 'ping',
+  #}
 }
