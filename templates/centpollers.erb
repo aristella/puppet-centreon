@@ -37,8 +37,7 @@ case "$1" in
         echo "----> Exporting CLAPI config"
         $clapi -e > $clapi_export_file
         if [ $? -ne 0 ] ; then echo "! Error during export of the configuration" ;exit $? ; fi
-	    for i in $pollers
-        do
+        i='Central'
             echo "=> Poller ID : $i"
             echo "- Generating configfiles"
             $clapi -a POLLERGENERATE -v$i >> $clapi_log_file
@@ -53,7 +52,6 @@ case "$1" in
             $clapi -a POLLERRESTART -v$i >> $clapi_log_file
             if [ $? -ne 0 ] ; then echo "! Error during restart of poller $i" ;exit $? ; fi
             echo "==> OK"
-        done
         exit 0
         ;;
     stop)
